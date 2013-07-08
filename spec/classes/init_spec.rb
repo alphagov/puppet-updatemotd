@@ -13,7 +13,6 @@ describe 'updatemotd' do
 
         it { should contain_class('updatemotd::install') }
         it { should contain_class('updatemotd::config') }
-        it { should contain_class('updatemotd::service') }
       end
     end
   end

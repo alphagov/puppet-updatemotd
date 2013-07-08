@@ -7,7 +7,6 @@ class updatemotd::params {
   case $::osfamily {
     'Debian': {
       $package_name = 'updatemotd'
-      $service_name = 'updatemotd'
     }
     default: {
       fail("${::operatingsystem} not supported")
