@@ -8,6 +8,7 @@ class updatemotd::params {
     'Debian': {
       $package_name  = 'libpam-modules'
       $package_purge = 'update-motd'
+      $config_dir    = '/etc/update-motd.d'
     }
     default: {
       fail("${::operatingsystem} not supported")
