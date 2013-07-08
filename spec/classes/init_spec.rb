@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'updatemotd' do
   context 'supported operating systems' do
-    ['Debian', 'RedHat'].each do |osfamily|
+    ['Debian'].each do |osfamily|
       describe "updatemotd class without any parameters on #{osfamily}" do
         let(:params) {{ }}
         let(:facts) {{
@@ -19,13 +19,13 @@ describe 'updatemotd' do
   end
 
   context 'unsupported operating system' do
-    describe 'updatemotd class without any parameters on Solaris/Nexenta' do
+    describe 'updatemotd class without any parameters on RedHat/CentOS' do
       let(:facts) {{
-        :osfamily        => 'Solaris',
-        :operatingsystem => 'Nexenta',
+        :osfamily        => 'RedHat',
+        :operatingsystem => 'CentOS',
       }}
 
-      it { expect { should }.to raise_error(Puppet::Error, /Nexenta not supported/) }
+      it { expect { should }.to raise_error(Puppet::Error, /CentOS not supported/) }
     end
   end
 end

@@ -9,10 +9,6 @@ class updatemotd::params {
       $package_name = 'updatemotd'
       $service_name = 'updatemotd'
     }
-    'RedHat', 'Amazon': {
-      $package_name = 'updatemotd'
-      $service_name = 'updatemotd'
-    }
     default: {
       fail("${::operatingsystem} not supported")
     }
