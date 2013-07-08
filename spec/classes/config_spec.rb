@@ -6,6 +6,11 @@ describe 'updatemotd' do
     :osfamily => 'Debian',
   }}
 
+  it { should contain_file('/etc/motd').with(
+    :ensure => 'link',
+    :target => '/var/run/motd'
+  )}
+
   describe 'purge_directory' do
     context 'false, default' do
       let(:params) {{ }}
