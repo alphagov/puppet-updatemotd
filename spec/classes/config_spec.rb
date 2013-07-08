@@ -1,9 +1,42 @@
 require 'spec_helper'
 
-describe 'updatemotd::config' do
+# Focus on updatemotd::config proxy of updatemotd
+describe 'updatemotd' do
   let(:facts) {{
     :osfamily => 'Debian',
   }}
 
-  it { should contain_file('/etc/update-motd.d').with_ensure('directory') }
+  describe 'purge_directory' do
+    context 'false, default' do
+      let(:params) {{ }}
+
+      it { should contain_file('/etc/update-motd.d').with(
+        :ensure  => 'directory',
+        :recurse => true,
+        :force   => true,
+        :purge   => false
+      )}
+    end
+
+    context 'true' do
+      let(:params) {{
+        :purge_directory => true,
+      }}
+
+      it { should contain_file('/etc/update-motd.d').with(
+        :ensure  => 'directory',
+        :recurse => true,
+        :force   => true,
+        :purge   => true
+      )}
+    end
+
+    context 'invalid type' do
+      let(:params) {{
+        :purge_directory => 'true',
+      }}
+
+      it { expect { should }.to raise_error(Puppet::Error, /is not a boolean/) }
+    end
+  end
 end

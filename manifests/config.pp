@@ -5,7 +5,12 @@
 class updatemotd::config {
   include updatemotd::params
 
+  $purge_directory = $updatemotd::purge_directory
+
   file { $updatemotd::params::config_dir:
-    ensure => directory,
+    ensure  => directory,
+    recurse => true,
+    force   => true,
+    purge   => $purge_directory,
   }
 }
