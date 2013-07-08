@@ -6,7 +6,7 @@
 class updatemotd::params {
   case $::osfamily {
     'Debian': {
-      $package_name = 'updatemotd'
+      $package_name = 'libpam-modules'
     }
     default: {
       fail("${::operatingsystem} not supported")

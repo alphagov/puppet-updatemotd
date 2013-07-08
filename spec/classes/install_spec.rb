@@ -5,5 +5,5 @@ describe 'updatemotd::install' do
     :osfamily => 'Debian',
   }}
 
-  it { should contain_package('foo') }
+  it { should contain_package('libpam-modules') }
 end
