@@ -6,9 +6,7 @@ class updatemotd::install {
   $package_name  = $updatemotd::params::package_name
   $package_purge = $updatemotd::params::package_purge
 
-  package { $package_name:
-    ensure => present,
-  }
+  ensure_packages([$package_name])
 
   if $package_purge {
     package { $package_purge:
