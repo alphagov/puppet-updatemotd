@@ -1,6 +1,7 @@
 # == Class: updatemotd
 #
-# Full description of class updatemotd here.
+# Manages MOTD on Ubuntu-alike systems using the update-motd model of conf.d
+# files.
 #
 # === Parameters
 #
