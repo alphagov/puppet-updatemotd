@@ -5,14 +5,28 @@
 class updatemotd::config {
   include updatemotd::params
 
-  $purge_directory = $updatemotd::purge_directory
-  $motd_symlink = $updatemotd::params::motd_symlink
+  $purge_directory   = $updatemotd::purge_directory
+  $preserve_upstream = $updatemotd::preserve_upstream
 
-  file { $updatemotd::params::config_dir:
+  $config_dir        = $updatemotd::params::config_dir
+  $motd_symlink      = $updatemotd::params::motd_symlink
+
+  file { $config_dir:
     ensure  => directory,
     recurse => true,
     force   => true,
     purge   => $purge_directory,
+  }
+
+  if $preserve_upstream {
+    $upstream_files     = $updatemotd::params::upstream_files
+    $upstream_files_abs = prefix($upstream_files, $config_dir)
+
+    # Marking these as undef tells Puppet not to purge them, nor care about
+    # whether they currently exist or what they contain.
+    file { $upstream_files_abs:
+      ensure  => undef,
+    }
   }
 
   file { '/etc/motd':
