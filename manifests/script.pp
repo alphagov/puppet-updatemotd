@@ -1,6 +1,6 @@
-# == Define: updatemotd::fragment
+# == Define: updatemotd::script
 #
-# Define a fragment to be included by motd(5) / update-motd(5). The contents
+# Define a script to be included by motd(5) / update-motd(5). The contents
 # should be executable and write to STDOUT.
 #
 # === Parameters
@@ -21,7 +21,7 @@
 #   Default: undef
 #
 #
-define updatemotd::fragment(
+define updatemotd::script(
   $order = 50,
   $source = undef,
   $content = undef

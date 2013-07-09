@@ -9,9 +9,9 @@ Include with default parameters:
 include updatemotd
 ```
 
-Create an additional fragment:
+Manage scripted content:
 ``` puppet
-updatemotd::fragment { 'important':
+updatemotd::script { 'important':
   content => '#!/bin/bash
 /bin/echo "This machine is of utmost importance!"',
 }

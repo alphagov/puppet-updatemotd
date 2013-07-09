@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'updatemotd::fragment' do
+describe 'updatemotd::script' do
   let(:facts) {{
     :osfamily => 'Debian',
   }}
