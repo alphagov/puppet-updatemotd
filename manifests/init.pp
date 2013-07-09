@@ -25,7 +25,8 @@
 #
 # [*preserve_upstream*]
 #   Boolean flag to preserve scripts from the upstream OS when
-#   `purge_directory` is used.
+#   `purge_directory` is used. Changing this may break the behaviour of
+#   `source`/`content`.
 #   Default: true
 #
 class updatemotd (
