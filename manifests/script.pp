@@ -1,7 +1,8 @@
 # == Define: updatemotd::script
 #
 # Define a script to be included by motd(5) / update-motd(5). The contents
-# should be executable and write to STDOUT.
+# should be executable and write to STDOUT. If you only need static content
+# then please see the parent class.
 #
 # === Parameters
 #

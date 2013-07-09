@@ -5,11 +5,29 @@
 class updatemotd::config {
   include updatemotd::params
 
+  $source            = $updatemotd::source
+  $content           = $updatemotd::content
   $purge_directory   = $updatemotd::purge_directory
   $preserve_upstream = $updatemotd::preserve_upstream
 
   $config_dir        = $updatemotd::params::config_dir
   $motd_symlink      = $updatemotd::params::motd_symlink
+
+  file { '/etc/motd':
+    ensure => link,
+    target => $motd_symlink,
+  }
+
+  if !($source) and !($content) {
+    $tail_ensure = absent
+  } else {
+    $tail_ensure = present
+  }
+  file { '/etc/motd.tail':
+    ensure  => $tail_ensure,
+    source  => $source,
+    content => $content,
+  }
 
   file { $config_dir:
     ensure  => directory,
@@ -27,10 +45,5 @@ class updatemotd::config {
     file { $upstream_files_abs:
       ensure  => undef,
     }
-  }
-
-  file { '/etc/motd':
-    ensure => link,
-    target => $motd_symlink,
   }
 }

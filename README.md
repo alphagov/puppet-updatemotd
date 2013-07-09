@@ -9,11 +9,20 @@ Include with default parameters:
 include updatemotd
 ```
 
-Manage scripted content:
+Define some static content for `motd.tail(5)`:
 ``` puppet
+class { 'updatemotd':
+  content => 'Welcome, humanoid!',
+}
+```
+
+Manage more advanded scripted content:
+``` puppet
+class { 'updatemotd':
+  purge_directory => true,
+}
 updatemotd::script { 'important':
-  content => '#!/bin/bash
-/bin/echo "This machine is of utmost importance!"',
+  content => '#!/bin/bash\nexec uptime\n',
 }
 ```
 

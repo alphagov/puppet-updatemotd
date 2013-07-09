@@ -1,9 +1,21 @@
 # == Class: updatemotd
 #
 # Manages MOTD on Ubuntu-alike systems using the update-motd model of conf.d
-# files.
+# files. Static content can be appended to the MOTD by passing params to
+# this class. See the `updatemotd::script` defined type if you need more
+# control.
 #
 # === Parameters
+#
+# [*source*]
+#   Standard `source` param for a file resource. This is mutually exclusive
+#   to the `content` param.
+#   Default: undef
+#
+# [*content*]
+#   Standard `content` param for a file resource. This is mutually exclusive
+#   to the `source` param.
+#   Default: undef
 #
 # [*purge_directory*]
 #   Boolean flag to purge the unmanaged contents of the config directory.
@@ -17,10 +29,16 @@
 #   Default: true
 #
 class updatemotd (
+  $source = undef,
+  $content = undef,
   $purge_directory = false,
   $preserve_upstream = true
 ) inherits updatemotd::params {
 
+  if ($source) and ($content) {
+    fail('source and content params are mutually exclusive')
+  }
+  validate_string($source, $content)
   validate_bool($purge_directory, $preserve_upstream)
 
   anchor { 'updatemotd::begin': } ->
