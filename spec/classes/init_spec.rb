@@ -9,7 +9,7 @@ describe 'updatemotd' do
           :osfamily => osfamily,
         }}
 
-        it { should include_class('updatemotd::params') }
+        it { should contain_class('updatemotd::params') }
 
         it { should contain_class('updatemotd::install') }
         it { should contain_class('updatemotd::config') }
