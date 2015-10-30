@@ -38,7 +38,7 @@ class updatemotd::config {
 
   if $preserve_upstream {
     $upstream_files     = $updatemotd::params::upstream_files
-    $upstream_files_abs = prefix($upstream_files, $config_dir)
+    $upstream_files_abs = prefix($upstream_files, "${config_dir}/")
 
     # Marking these as undef tells Puppet not to purge them, nor care about
     # whether they currently exist or what they contain.

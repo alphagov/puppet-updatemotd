@@ -107,7 +107,7 @@ describe 'updatemotd' do
       let(:params) {{ }}
 
       upstream_files.each do |upstream_file|
-        it { should_not contain_file(upstream_file) }
+        it { should contain_file(upstream_file).with_ensure(nil) }
       end
     end
 
