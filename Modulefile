@@ -6,4 +6,4 @@ license       'MIT'
 summary       'Manage update-motd(5) on Ubuntu systems'
 project_page  'https://github.com/gds-operations/puppet-updatemotd'
 
-dependency 'puppetlabs/stdlib', '>= 3.0.0'
+dependency 'puppetlabs/stdlib', '>= 3.2.0 <4.0.0'
