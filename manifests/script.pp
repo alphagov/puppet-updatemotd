@@ -7,9 +7,9 @@
 # === Parameters
 #
 # [*order*]
-#   Two digit integer between 00 and 99. This is the order which the file
+#   Two digit string between 00 and 99. This is the order which the file
 #   will be included in the motd output.
-#   Default: 50
+#   Default: '50'
 #
 # [*source*]
 #   Standard `source` param for a file resource. This is mutually exclusive
@@ -23,12 +23,16 @@
 #
 #
 define updatemotd::script(
-  $order = 50,
+  $order = '50',
   $source = undef,
   $content = undef
 ) {
   validate_re($title, '^[a-zA-Z_]+$')
-  validate_re($order, '^[0-9]{2}$')
+
+  # for backwards compatibility with puppet 3 users coerce int to string
+  $order_string = sprintf('%s', $order)
+
+  validate_re($order_string, '^[0-9]{2}$')
 
   if !($source) and !($content) {
     fail('source or content params are required')
@@ -38,7 +42,7 @@ define updatemotd::script(
 
   include updatemotd::params
 
-  file { "${updatemotd::params::config_dir}/${order}-${title}":
+  file { "${updatemotd::params::config_dir}/${order_string}-${title}":
     ensure  => present,
     mode    => '0755',
     source  => $source,

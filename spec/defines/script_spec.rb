@@ -31,9 +31,7 @@ describe 'updatemotd::script' do
             :content => 'lion',
           }}
 
-          it { expect { should }.to raise_error(Puppet::Error,
-            /does not match/
-          )}
+          it { is_expected.to compile.and_raise_error(/does not match/) }
         end
       end
     end
@@ -68,9 +66,10 @@ describe 'updatemotd::script' do
   describe 'no source or content' do
     let(:params) {{ }}
 
-    it { expect { should }.to raise_error(Puppet::Error,
+    it { is_expected.to compile.and_raise_error(
       /source or content params are required/
-    )}
+    ) }
+
   end
 
   describe 'source and content' do
@@ -79,8 +78,8 @@ describe 'updatemotd::script' do
       :source  => 'puppet:///you/didnt',
     }}
 
-    it { expect { should }.to raise_error(Puppet::Error,
+    it { is_expected.to compile.and_raise_error(
       /source and content params are mutually exclusive/
-    )}
+    ) }
   end
 end
