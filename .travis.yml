@@ -13,6 +13,7 @@ rvm:
 env:
   matrix:
   - PUPPET_VERSION="~> 3.8.5"
+  - PUPPET_VERSION="~> 4.3.2"
 # This exclusion is because of https://tickets.puppetlabs.com/browse/PUP-3796
 matrix:
   exclude:
