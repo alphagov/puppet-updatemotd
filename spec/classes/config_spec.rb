@@ -55,7 +55,7 @@ describe 'updatemotd' do
         :source  => 'puppet:///you/didnt',
       }}
 
-      it { expect { should }.to raise_error(Puppet::Error,
+      it { should compile.and_raise_error(Puppet::Error,
         /source and content params are mutually exclusive/
       )}
     end
@@ -91,7 +91,7 @@ describe 'updatemotd' do
         :purge_directory => 'true',
       }}
 
-      it { expect { should }.to raise_error(Puppet::Error, /is not a boolean/) }
+      it { should compile.and_raise_error(Puppet::Error, /is not a boolean/) }
     end
   end
 
@@ -126,7 +126,7 @@ describe 'updatemotd' do
         :purge_directory => 'true',
       }}
 
-      it { expect { should }.to raise_error(Puppet::Error, /is not a boolean/) }
+      it { should compile.and_raise_error(Puppet::Error, /is not a boolean/) }
     end
   end
 end

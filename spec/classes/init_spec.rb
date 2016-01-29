@@ -24,7 +24,7 @@ describe 'updatemotd' do
         :operatingsystem => 'CentOS',
       }}
 
-      it { expect { should }.to raise_error(Puppet::Error, /CentOS not supported/) }
+      it { should compile.and_raise_error(Puppet::Error, /CentOS not supported/) }
     end
   end
 end
