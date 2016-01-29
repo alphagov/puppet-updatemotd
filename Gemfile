@@ -9,7 +9,7 @@ gem 'rake'
 gem 'puppet-lint'
 gem 'rspec-puppet', '1.0.1'
 gem 'rspec-system-puppet'
-gem 'puppetlabs_spec_helper'
+gem 'puppetlabs_spec_helper', '1.0.1'
 gem 'puppet-syntax'
 
 # Pin old versions of fog.
