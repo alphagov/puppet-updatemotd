@@ -8,6 +8,9 @@ describe 'updatemotd::script' do
   let(:title) { 'giraffe' }
   let(:config_dir) { '/etc/update-motd.d' }
   let(:config_file) { "#{config_dir}/50-giraffe" }
+  let(:pre_condition) {
+    'include updatemotd'
+  }
 
   describe 'order' do
     context 'valid values' do
