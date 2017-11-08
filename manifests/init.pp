@@ -42,8 +42,8 @@ class updatemotd (
   validate_string($source, $content)
   validate_bool($purge_directory, $preserve_upstream)
 
-  anchor { 'updatemotd::begin': } ->
-  class { 'updatemotd::install': } ->
-  class { 'updatemotd::config': } ->
-  anchor { 'updatemotd::end': }
+  anchor { 'updatemotd::begin': }
+  -> class { 'updatemotd::install': }
+  -> class { 'updatemotd::config': }
+  -> anchor { 'updatemotd::end': }
 }
